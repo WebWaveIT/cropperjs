@@ -1,17 +1,17 @@
 /*!
- * Cropper.js v1.5.12
+ * WebwavecmsCropper.js v1.5.13
  * https://fengyuanchen.github.io/cropperjs
  *
  * Copyright 2015-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2022-03-24T12:55:34.166Z
+ * Date: 2022-03-24T13:29:19.392Z
  */
 
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Cropper = factory());
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.WebwavecmsCropper = factory());
 })(this, (function () { 'use strict';
 
   function ownKeys(object, enumerableOnly) {

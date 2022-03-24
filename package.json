@@ -1,10 +1,10 @@
 {
-  "name": "cropperjs",
+  "name": "@webwavecms/cropperjs",
   "description": "JavaScript image cropper.",
-  "version": "1.5.12",
-  "main": "dist/cropper.common.js",
-  "module": "dist/cropper.esm.js",
-  "browser": "dist/cropper.js",
+  "version": "1.0.2",
+  "main": "dist/@webwavecms/cropper.common.js",
+  "module": "dist/@webwavecms/cropper.esm.js",
+  "browser": "dist/@webwavecms/cropper.js",
   "types": "types/index.d.ts",
   "style": "dist/cropper.css",
   "files": [
@@ -19,7 +19,7 @@
     "clean": "del-cli dist",
     "compress": "npm run compress:css && npm run compress:js",
     "compress:css": "postcss dist/cropper.css -u cssnano -o dist/cropper.min.css --no-map",
-    "compress:js": "uglifyjs dist/cropper.js -o dist/cropper.min.js -c -m --comments /^!/",
+    "compress:js": "uglifyjs dist/@webwavecms/cropper.js -o dist/@webwavecms/cropper.min.js -c -m --comments /^!/",
     "copy": "cpy dist/cropper.css docs/css",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:css": "stylelint **/*.{css,scss} --fix",
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fengyuanchen/cropperjs.git"
+    "url": "git+https://github.com/kuchar90/cropperjs"
   },
   "keywords": [
     "image",
@@ -53,10 +53,7 @@
     "front-end",
     "web"
   ],
-  "author": {
-    "name": "Chen Fengyuan",
-    "url": "https://chenfengyuan.com/"
-  },
+  "author": "Chen Fengyuan (https://chenfengyuan.com/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fengyuanchen/cropperjs/issues"
@@ -102,5 +99,10 @@
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-order": "^5.0.0",
     "uglify-js": "^3.14.5"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "dependencies": {}
 }

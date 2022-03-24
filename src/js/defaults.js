@@ -93,13 +93,13 @@ export default {
   minCropBoxHeight: 0,
   minContainerWidth: MIN_CONTAINER_WIDTH,
   minContainerHeight: MIN_CONTAINER_HEIGHT,
-  
-  //canvas limitation in freeMode
-  forceLimitsInFreeMode:false,
-  minCanvasLeft:null,
-  maxCanvasLeft:null,
-  minCanvasTop:null,
-  maxCanvasTop:null,
+
+  // canvas limitation in freeMode
+  forceLimitsInFreeMode: false,
+  minCanvasLeft: null,
+  maxCanvasLeft: null,
+  minCanvasTop: null,
+  maxCanvasTop: null,
 
   // Shortcuts of events
   ready: null,

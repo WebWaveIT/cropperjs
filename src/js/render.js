@@ -177,12 +177,12 @@ export default {
     }
 
     if (positionLimited) {
-	  if(viewMode == 0 && options.forceLimitsInFreeMode){
-		canvasData.minLeft = options.minCanvasLeft;
-		canvasData.maxLeft = options.maxCanvasLeft;
-		canvasData.minTop = options.minCanvasTop;
-		canvasData.maxTop = options.maxCanvasTop;
-	  }else if (viewMode > (cropped ? 0 : 1)) {
+      if (viewMode === 0 && options.forceLimitsInFreeMode) {
+        canvasData.minLeft = options.minCanvasLeft;
+        canvasData.maxLeft = options.maxCanvasLeft;
+        canvasData.minTop = options.minCanvasTop;
+        canvasData.maxTop = options.maxCanvasTop;
+      } else if (viewMode > (cropped ? 0 : 1)) {
         const newCanvasLeft = containerData.width - canvasData.width;
         const newCanvasTop = containerData.height - canvasData.height;
 

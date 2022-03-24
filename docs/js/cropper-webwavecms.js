@@ -1,32 +1,27 @@
 /*!
- * Cropper.js v1.5.12
+ * CropperWebwavecms.js v1.5.12
  * https://fengyuanchen.github.io/cropperjs
  *
  * Copyright 2015-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2021-06-12T08:00:17.411Z
+ * Date: 2022-03-24T13:07:05.096Z
  */
 
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Cropper = factory());
-}(this, (function () { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.CropperWebwavecms = factory());
+})(this, (function () { 'use strict';
 
   function ownKeys(object, enumerableOnly) {
     var keys = Object.keys(object);
 
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-
-      if (enumerableOnly) {
-        symbols = symbols.filter(function (sym) {
-          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-        });
-      }
-
-      keys.push.apply(keys, symbols);
+      enumerableOnly && (symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      })), keys.push.apply(keys, symbols);
     }
 
     return keys;
@@ -34,19 +29,12 @@
 
   function _objectSpread2(target) {
     for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-      }
+      var source = null != arguments[i] ? arguments[i] : {};
+      i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
     }
 
     return target;
@@ -55,17 +43,11 @@
   function _typeof(obj) {
     "@babel/helpers - typeof";
 
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function (obj) {
-        return typeof obj;
-      };
-    } else {
-      _typeof = function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-      };
-    }
-
-    return _typeof(obj);
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+      return typeof obj;
+    } : function (obj) {
+      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    }, _typeof(obj);
   }
 
   function _classCallCheck(instance, Constructor) {
@@ -87,6 +69,9 @@
   function _createClass(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
+    Object.defineProperty(Constructor, "prototype", {
+      writable: false
+    });
     return Constructor;
   }
 
@@ -263,6 +248,12 @@
     minCropBoxHeight: 0,
     minContainerWidth: MIN_CONTAINER_WIDTH,
     minContainerHeight: MIN_CONTAINER_HEIGHT,
+    // canvas limitation in freeMode
+    forceLimitsInFreeMode: false,
+    minCanvasLeft: null,
+    maxCanvasLeft: null,
+    minCanvasTop: null,
+    maxCanvasTop: null,
     // Shortcuts of events
     ready: null,
     cropstart: null,
@@ -366,10 +357,10 @@
       if (Array.isArray(data) || isNumber(data.length)
       /* array-like */
       ) {
-          toArray(data).forEach(function (value, key) {
-            callback.call(data, value, key, data);
-          });
-        } else if (isObject(data)) {
+        toArray(data).forEach(function (value, key) {
+          callback.call(data, value, key, data);
+        });
+      } else if (isObject(data)) {
         Object.keys(data).forEach(function (key) {
           callback.call(data, data[key], key, data);
         });
@@ -879,8 +870,7 @@
    * @returns {Object} The result sizes.
    */
 
-  function getAdjustedSizes(_ref4) // or 'cover'
-  {
+  function getAdjustedSizes(_ref4) {
     var aspectRatio = _ref4.aspectRatio,
         height = _ref4.height,
         width = _ref4.width;
@@ -1118,14 +1108,14 @@
           if (littleEndian || endianness === 0x4D4D
           /* bigEndian */
           ) {
-              if (dataView.getUint16(tiffOffset + 2, littleEndian) === 0x002A) {
-                var firstIFDOffset = dataView.getUint32(tiffOffset + 4, littleEndian);
+            if (dataView.getUint16(tiffOffset + 2, littleEndian) === 0x002A) {
+              var firstIFDOffset = dataView.getUint32(tiffOffset + 4, littleEndian);
 
-                if (firstIFDOffset >= 0x00000008) {
-                  ifdStart = tiffOffset + firstIFDOffset;
-                }
+              if (firstIFDOffset >= 0x00000008) {
+                ifdStart = tiffOffset + firstIFDOffset;
               }
             }
+          }
         }
       }
 
@@ -1142,14 +1132,14 @@
           if (dataView.getUint16(_offset, littleEndian) === 0x0112
           /* Orientation */
           ) {
-              // 8 is the offset of the current tag's value
-              _offset += 8; // Get the original orientation value
+            // 8 is the offset of the current tag's value
+            _offset += 8; // Get the original orientation value
 
-              orientation = dataView.getUint16(_offset, littleEndian); // Override the orientation with its default value
+            orientation = dataView.getUint16(_offset, littleEndian); // Override the orientation with its default value
 
-              dataView.setUint16(_offset, 1, littleEndian);
-              break;
-            }
+            dataView.setUint16(_offset, 1, littleEndian);
+            break;
+          }
         }
       }
     } catch (error) {
@@ -1345,7 +1335,12 @@
       }
 
       if (positionLimited) {
-        if (viewMode > (cropped ? 0 : 1)) {
+        if (viewMode === 0 && options.forceLimitsInFreeMode) {
+          canvasData.minLeft = options.minCanvasLeft;
+          canvasData.maxLeft = options.maxCanvasLeft;
+          canvasData.minTop = options.minCanvasTop;
+          canvasData.maxTop = options.maxCanvasTop;
+        } else if (viewMode > (cropped ? 0 : 1)) {
           var newCanvasLeft = containerData.width - canvasData.width;
           var newCanvasTop = containerData.height - canvasData.height;
           canvasData.minLeft = Math.min(0, newCanvasLeft);
@@ -3628,4 +3623,4 @@
 
   return Cropper;
 
-})));
+}));

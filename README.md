@@ -2,7 +2,7 @@
 
 [![Downloads](https://img.shields.io/npm/dm/cropperjs.svg)](https://www.npmjs.com/package/cropperjs) [![Version](https://img.shields.io/npm/v/cropperjs.svg)](https://www.npmjs.com/package/cropperjs) [![Gzip Size](https://img.shields.io/bundlephobia/minzip/cropperjs.svg)](https://unpkg.com/cropperjs/dist/cropper.common.js)
 
-> JavaScript image cropper.
+> JavaScript image cropper. This is a fork of [cropperjs](https://github.com/fengyuanchen/cropperjs)
 
 - [Website](https://fengyuanchen.github.io/cropperjs)
 - [Photo Editor](https://fengyuanchen.github.io/photo-editor) - An advanced example of Cropper.js.
@@ -431,6 +431,33 @@ The minimum width of the crop box.
 The minimum height of the crop box.
 
 **Note:** This size is relative to the page, not the image.
+
+### forceLimitsInFreeMode
+
+- Type: `Boolean`
+- Default: `false`
+
+Force limits in freeMode(viewMode 0). Limits are defined by minCanvasLeft/maxCanvasLeft/minCanvasTop/maxCanvasTop
+
+### minCanvasLeft
+
+- Type: `Number`
+- Default: `null`
+
+### maxCanvasLeft
+
+- Type: `Number`
+- Default: `null`
+
+### minCanvasTop
+
+- Type: `Number`
+- Default: `null`
+
+### maxCanvasTop
+
+- Type: `Number`
+- Default: `null`
 
 ### ready
 
@@ -1054,10 +1081,11 @@ Maintained under the [Semantic Versioning guidelines](https://semver.org/).
 
 ## License
 
+[MIT](https://opensource.org/licenses/MIT) © [webwavecms.com](http://webwavecms.com/)
 [MIT](https://opensource.org/licenses/MIT) © [Chen Fengyuan](https://chenfengyuan.com/)
 
 ## Related projects
-
+- [cropperjs](https://github.com/fengyuanchen/cropperjs) by @fengyuanchen
 - [angular-cropperjs](https://github.com/matheusdavidson/angular-cropperjs) by @matheusdavidson
 - [ember-cropperjs](https://github.com/danielthall/ember-cropperjs) by @danielthall
 - [iron-cropper](https://github.com/safetychanger/iron-cropper) by @safetychanger
