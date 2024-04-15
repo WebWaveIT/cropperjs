@@ -14,6 +14,7 @@ import {
   CLASS_HIDDEN,
 } from './constants';
 import {
+  isNumber,
   forEach,
   getMaxZoomRatio,
   getOffset,
@@ -31,6 +32,7 @@ export default {
     } = this;
     let { action } = this;
     let { aspectRatio } = options;
+    let accelerator = isNumber(options.accelerator) ? options.accelerator: 1;
     let {
       left,
       top,
@@ -67,8 +69,8 @@ export default {
 
     const pointer = pointers[Object.keys(pointers)[0]];
     const range = {
-      x: pointer.endX - pointer.startX,
-      y: pointer.endY - pointer.startY,
+      x: (pointer.endX - pointer.startX) * accelerator,
+      y: (pointer.endY - pointer.startY) * accelerator,
     };
     const check = (side) => {
       switch (side) {

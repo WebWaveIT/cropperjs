@@ -1,11 +1,11 @@
 /*!
- * WebwavecmsCropper.js v1.5.13
+ * WebwavecmsCropper.js v1.5.14
  * https://fengyuanchen.github.io/cropperjs
  *
  * Copyright 2015-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2022-03-24T13:29:19.392Z
+ * Date: 2024-04-18T09:44:58.750Z
  */
 
 (function (global, factory) {
@@ -2005,6 +2005,7 @@
           pointers = this.pointers;
       var action = this.action;
       var aspectRatio = options.aspectRatio;
+      var accelerator = isNumber(options.accelerator) ? options.accelerator : 1;
       var left = cropBoxData.left,
           top = cropBoxData.top,
           width = cropBoxData.width,
@@ -2031,8 +2032,8 @@
 
       var pointer = pointers[Object.keys(pointers)[0]];
       var range = {
-        x: pointer.endX - pointer.startX,
-        y: pointer.endY - pointer.startY
+        x: (pointer.endX - pointer.startX) * accelerator,
+        y: (pointer.endY - pointer.startY) * accelerator
       };
 
       var check = function check(side) {

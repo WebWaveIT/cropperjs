@@ -1,7 +1,7 @@
 {
   "name": "@webwavecms/cropperjs",
   "description": "JavaScript image cropper.",
-  "version": "1.0.2",
+  "version": "1.5.14",
   "main": "dist/@webwavecms/cropper.common.js",
   "module": "dist/@webwavecms/cropper.esm.js",
   "browser": "dist/@webwavecms/cropper.js",
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kuchar90/cropperjs"
+    "url": "git+https://github.com/WebWaveIT/cropperjs"
   },
   "keywords": [
     "image",
